@@ -16,7 +16,7 @@ const db = mysql.createConnection({
   host: 'gateway01.ap-southeast-1.prod.aws.tidbcloud.com',
   user: 'Sb5tYK82dsSaqE3.root', // or your db username
   password: 'p3Y7KOjQ0FAeWKs9', // your db password
-  database: 'test' // the name of your database
+  database: 'test', // the name of your database
   ssl: {
     ca: fs.readFileSync('ca.pem') // This tells the server to use your certificate file
   }
@@ -91,3 +91,4 @@ const PORT = 3001; // The port our server will run on
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
+
