@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ganesh Chaturthi Finance Tracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fff8e1; /* Light cream background */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23ffc107' fill-opacity='0.1'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h4v-9H0v-1h4v-9H0v-1h4v-9H0v-1h4v-9H0v-1h4v-9H0v-1h4v-9H0v-1h4v-9H0v-1h4v-9H0v-1h5v-4h1v4h9v-4h1v4h9v-4h1v4h9v-4h1v4h9v-4h1v4h9v-4h1v4h9v-4h1v4h9v-4h1v4h5v1h-5v9h5v1h-5v9h5v1h-5v9h5v1h-5v9h5v1h-5v9h5v1h-5v9h5v1h-5v9h5v1h-5v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0h1v5h4v1H6v4H5V6H0V5h5z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        .tab-button { position: relative; transition: color 0.3s ease; }
+        .tab-button::after { content: ''; position: absolute; bottom: -2px; left: 0; right: 0; height: 3px; background-color: #fb8c00; transform: scaleX(0); transition: transform 0.3s ease-in-out; }
+        .tab-button.active { color: #fb8c00; }
+        .tab-button.active::after { transform: scaleX(1); }
+
+        .card { transition: transform 0.2s ease-out, box-shadow 0.2s ease-out; }
+        .card:hover { transform: translateY(-4px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
+        
+        .form-input { 
+            transition: all 0.2s ease-in-out; 
+            color: #374151; /* Darker text color for input */
+            border: 1px solid #d1d5db; /* Always visible gray-300 border */
+            background-color: #f9fafb; /* Light gray-50 background */
+        }
+        .form-input::placeholder {
+            color: #9ca3af; /* Lighter placeholder text */
+        }
+        .form-input:focus { 
+            box-shadow: 0 0 0 3px rgba(251, 140, 0, 0.3); 
+            border-color: #ffa726; 
+            background-color: #ffffff;
+        }
+
+        .btn { transition: all 0.2s ease-in-out; background-image: linear-gradient(to right, var(--tw-gradient-stops)); }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); }
+        
+        .list-entry:nth-child(odd) { background-color: #f8fafc; }
+
+        .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0,0,0,0.5); display: flex; justify-content: center; align-items: center; z-index: 1000; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease; }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
+        .modal-content { background: white; padding: 2rem; border-radius: 0.75rem; width: 90%; max-width: 500px; transform: scale(0.95); transition: transform 0.3s ease; }
+        .modal-overlay.active .modal-content { transform: scale(1); }
+        
+        .loader { border: 4px solid #f3f3f3; border-top: 4px solid #fb8c00; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 2rem auto; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="container mx-auto max-w-6xl p-4 sm:p-6">
+        <header class="text-center my-8 p-6 rounded-xl bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-lg">
+            <h1 class="text-4xl sm:text-5xl font-bold">Ganesh Chaturthi</h1>
+            <p class="text-orange-100 mt-2">Manage donations, expenses, and sponsors with ease.</p>
+        </header>
+
+        <nav class="bg-white rounded-lg shadow-md mb-8">
+            <div class="flex flex-wrap justify-around border-b-2 border-gray-200">
+                <button data-tab="home" class="tab-button flex-1 py-4 px-2 text-center font-semibold text-gray-600 hover:text-orange-600 focus:outline-none">Home</button>
+                <button data-tab="chandha" class="tab-button flex-1 py-4 px-2 text-center font-semibold text-gray-600 hover:text-orange-600 focus:outline-none">Chandha</button>
+                <button data-tab="sponsors" class="tab-button flex-1 py-4 px-2 text-center font-semibold text-gray-600 hover:text-orange-600 focus:outline-none">Sponsors</button>
+                <button data-tab="usage" class="tab-button flex-1 py-4 px-2 text-center font-semibold text-gray-600 hover:text-orange-600 focus:outline-none">Money Usage</button>
+                <button data-tab="items" class="tab-button flex-1 py-4 px-2 text-center font-semibold text-gray-600 hover:text-orange-600 focus:outline-none">Items Purchased</button>
+            </div>
+        </nav>
+
+        <main id="main-content">
+            <!-- Home Tab -->
+            <div id="home" class="tab-content active">
+                <div class="bg-white p-8 rounded-xl shadow-lg text-center card">
+                    <h2 class="text-2xl font-semibold text-gray-500 mb-2">Available Balance</h2>
+                    <p id="balance" class="text-6xl font-bold text-green-600">₹0.00</p>
+                    <div class="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 text-center">
+                        <div class="p-4 bg-blue-50 rounded-lg"><p class="text-lg text-blue-500">Total Amount Got</p><p id="totalAmountGot" class="text-3xl font-semibold text-blue-600">₹0.00</p></div>
+                        <div class="p-4 bg-purple-50 rounded-lg"><p class="text-lg text-purple-500">Total Donations</p><p id="totalDonations" class="text-3xl font-semibold text-purple-600">₹0.00</p></div>
+                        <div class="p-4 bg-green-50 rounded-lg"><p class="text-lg text-green-500">Total Sponsors</p><p id="totalSponsors" class="text-3xl font-semibold text-green-600">₹0.00</p></div>
+                        <div class="p-4 bg-red-50 rounded-lg"><p class="text-lg text-red-500">Total Expenses</p><p id="totalExpenses" class="text-3xl font-semibold text-red-600">₹0.00</p></div>
+                        <div class="p-4 bg-pink-50 rounded-lg"><p class="text-lg text-pink-500">Total To Pay</p><p id="totalToPay" class="text-3xl font-semibold text-pink-600">₹0.00</p></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Chandha Tab -->
+            <div id="chandha" class="tab-content"><div class="grid grid-cols-1 md:grid-cols-2 gap-8"><div class="bg-white p-6 rounded-xl shadow-lg card"><h2 class="text-2xl font-bold mb-6">Record Donation (Chandha)</h2><form id="chandhaForm"><div class="mb-4"><label for="chandhaName" class="block text-sm font-medium text-gray-700">Donor's Name</label><input type="text" id="chandhaName" required class="form-input mt-1 block w-full" placeholder="e.g., Ramesh Kumar"></div><div class="mb-4"><label for="chandhaAmount" class="block text-sm font-medium text-gray-700">Amount</label><input type="number" id="chandhaAmount" step="0.01" required class="form-input mt-1 block w-full" placeholder="e.g., 501"></div><div class="mb-4"><label for="chandhaPhone" class="block text-sm font-medium text-gray-700">Phone Number (Optional)</label><input type="tel" id="chandhaPhone" placeholder="e.g., 9876543210" class="form-input mt-1 block w-full"></div><button type="submit" class="w-full btn text-white py-3 px-4 rounded-md font-semibold from-purple-500 to-purple-600">Record Donation</button></form></div><div class="bg-white p-6 rounded-xl shadow-lg card"><h2 class="text-2xl font-bold mb-6">Donation History</h2><div id="chandhaList" data-collection="chandha" class="space-y-2 max-h-96 overflow-y-auto"><div class="loader"></div></div></div></div></div>
+
+            <!-- Sponsors Tab -->
+            <div id="sponsors" class="tab-content"><div class="grid grid-cols-1 md:grid-cols-2 gap-8"><div class="bg-white p-6 rounded-xl shadow-lg card"><h2 class="text-2xl font-bold mb-6">Add Sponsor</h2><form id="sponsorsForm"><div class="mb-4"><label for="sponsorName" class="block text-sm font-medium text-gray-700">Sponsor's Name</label><input type="text" id="sponsorName" required class="form-input mt-1 block w-full" placeholder="e.g., ABC Textiles"></div><div class="mb-4"><label for="sponsorItem" class="block text-sm font-medium text-gray-700">Item Sponsored</label><input type="text" id="sponsorItem" required class="form-input mt-1 block w-full" placeholder="e.g., Flowers & Decoration"></div><div class="mb-4"><label for="sponsorAmount" class="block text-sm font-medium text-gray-700">Amount</label><input type="number" id="sponsorAmount" step="0.01" required class="form-input mt-1 block w-full" placeholder="e.g., 5001"></div><button type="submit" class="w-full btn text-white py-3 px-4 rounded-md font-semibold from-green-500 to-green-600">Add Sponsor</button></form></div><div class="bg-white p-6 rounded-xl shadow-lg card"><h2 class="text-2xl font-bold mb-6">Sponsor History</h2><div id="sponsorList" data-collection="sponsors" class="space-y-2 max-h-96 overflow-y-auto"><div class="loader"></div></div></div></div></div>
+
+            <!-- Money Usage Tab -->
+            <div id="usage" class="tab-content"><div class="bg-white p-6 rounded-xl shadow-lg card"><h2 class="text-2xl font-bold mb-6">Log Expense</h2><form id="usageForm"><div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4"><div class="mb-4 md:mb-0"><label for="expenseName" class="block text-sm font-medium text-gray-700">Name/Item (Samanu)</label><input type="text" id="expenseName" required class="form-input mt-1 block w-full" placeholder="e.g., Pooja Samagri"></div><div><label for="expensePurpose" class="block text-sm font-medium text-gray-700">Purpose</label><input type="text" id="expensePurpose" required class="form-input mt-1 block w-full" placeholder="e.g., Daily Aarti"></div></div><div class="mb-4"><label for="expenseImageUrl" class="block text-sm font-medium text-gray-700">Image URL (Optional)</label><input type="url" id="expenseImageUrl" placeholder="https://example.com/image.png" class="form-input mt-1 block w-full"></div><div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4"><div><label for="expenseAmount" class="block text-sm font-medium text-gray-700">Amount</label><input type="number" id="expenseAmount" step="0.01" required class="form-input mt-1 block w-full" placeholder="e.g., 1101"></div><div><label for="expenseStatus" class="block text-sm font-medium text-gray-700">Status</label><select id="expenseStatus" class="form-input mt-1 block w-full"><option value="Paid">Paid</option><option value="Unpaid">Unpaid</option></select></div></div><div id="payToContainer" class="mb-4 hidden"><label for="expensePayTo" class="block text-sm font-medium text-gray-700">Pay To (Name)</label><input type="text" id="expensePayTo" class="form-input mt-1 block w-full" placeholder="e.g., Flower Shop"></div><button type="submit" class="w-full btn text-white py-3 px-4 rounded-md font-semibold from-red-500 to-red-600">Log Expense</button></form></div><div class="bg-white p-6 rounded-xl shadow-lg card"><h2 class="text-2xl font-bold mb-6">Expense History</h2><div id="expenseList" data-collection="expenses" class="space-y-2 max-h-96 overflow-y-auto"><div class="loader"></div></div></div></div>
+
+            <!-- Items Purchased Tab -->
+            <div id="items" class="tab-content"><div class="bg-white p-6 rounded-xl shadow-lg card"><h2 class="text-2xl font-bold mb-4">Item Purchase History</h2><p class="text-sm text-gray-600 mb-6">This list is automatically updated from 'Money Usage'.</p><div class="overflow-x-auto"><table class="w-full text-left"><thead class="bg-gray-100"><tr><th class="p-3">Image</th><th class="p-3">Item Name (Samanu)</th><th class="p-3">Purpose</th><th class="p-3">Price</th><th class="p-3">Date</th><th class="p-3 text-right">Actions</th></tr></thead><tbody id="itemList" data-collection="items"><tr id="itemsLoader"><td colspan="6"><div class="loader"></div></td></tr></tbody></table></div></div></div>
+        </main>
+    </div>
+
+    <!-- Edit Modal -->
+    <div id="editModal" class="modal-overlay">
+        <div class="modal-content">
+            <h2 id="modalTitle" class="text-2xl font-bold mb-6">Edit Record</h2>
+            <form id="editForm">
+                <div id="editFieldsContainer"></div>
+                <div class="flex justify-end space-x-4 mt-8">
+                    <button type="button" id="cancelEdit" class="px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300">Cancel</button>
+                    <button type="submit" class="px-4 py-2 btn text-white rounded-md from-indigo-500 to-indigo-600">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="module">
+        const API_BASE_URL = "http://localhost:3001/api";
+        let currentEditInfo = {};
+        let allDataCache = {};
+
+        // --- UI & State Management ---
+        function updateBalance(data) {
+            const totalDonations = data.chandha.reduce((sum, item) => sum + parseFloat(item.Amount || 0), 0);
+            const totalSponsors = data.sponsors.reduce((sum, item) => sum + parseFloat(item.Amount || 0), 0);
+            const totalExpenses = data.expenses.reduce((sum, item) => sum + parseFloat(item.Amount || 0), 0);
+            const totalToPay = data.expenses.filter(item => item.Status === 'Unpaid').reduce((sum, item) => sum + parseFloat(item.Amount || 0), 0);
+            const totalAmountGot = totalDonations + totalSponsors;
+            const balance = totalDonations - totalExpenses;
+            
+            document.getElementById('balance').textContent = `₹${balance.toFixed(2)}`;
+            document.getElementById('balance').classList.toggle('text-red-600', balance < 0);
+            document.getElementById('balance').classList.toggle('text-green-600', balance >= 0);
+            document.getElementById('totalAmountGot').textContent = `₹${totalAmountGot.toFixed(2)}`;
+            document.getElementById('totalDonations').textContent = `₹${totalDonations.toFixed(2)}`;
+            document.getElementById('totalSponsors').textContent = `₹${totalSponsors.toFixed(2)}`;
+            document.getElementById('totalExpenses').textContent = `₹${totalExpenses.toFixed(2)}`;
+            document.getElementById('totalToPay').textContent = `₹${totalToPay.toFixed(2)}`;
+        }
+
+        // --- Data Fetching & Rendering ---
+        async function fetchAllData() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/data`);
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                const data = await response.json();
+                allDataCache = data; // Cache the data
+                renderAllLists(data);
+                updateBalance(data);
+            } catch (error) {
+                console.error("Error fetching data:", error);
+                alert("Could not fetch data from the server. Is the server running?");
+            }
+        }
+
+        function renderAllLists(data) {
+            renderList('chandhaList', data.chandha, createChandhaListEntry);
+            renderList('sponsorList', data.sponsors, createSponsorListEntry);
+            renderList('expenseList', data.expenses, createExpenseListEntry);
+            renderList('itemList', data.items, createItemTableRow, true);
+        }
+
+        function renderList(listId, items, creatorFunc, isTable = false) {
+            const list = document.getElementById(listId);
+            list.innerHTML = '';
+            if (!items || items.length === 0) {
+                const placeholder = isTable ? `<tr><td colspan="6" class="text-gray-500 text-center p-4">No records yet.</td></tr>` : `<p class="text-gray-500 text-center p-4">No records yet.</p>`;
+                list.innerHTML = placeholder;
+                return;
+            }
+            items.forEach(item => list.appendChild(creatorFunc(item)));
+        }
+
+        // --- API Communication ---
+        async function apiRequest(endpoint, method = 'GET', body = null) {
+            try {
+                const options = {
+                    method,
+                    headers: { 'Content-Type': 'application/json' },
+                };
+                if (body) options.body = JSON.stringify(body);
+                const response = await fetch(`${API_BASE_URL}${endpoint}`, options);
+                if (!response.ok) {
+                    const errorBody = await response.json();
+                    throw new Error(errorBody.error || `HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            } catch (error) {
+                console.error(`API request failed for ${method} ${endpoint}:`, error);
+                alert(`An error occurred: ${error.message}`);
+                throw error; // Re-throw to stop execution flow
+            }
+        }
+
+        // --- Event Handlers ---
+        async function handleFormSubmit(e) {
+            e.preventDefault();
+            const form = e.target;
+            const formId = form.id;
+            
+            try {
+                if (formId === 'chandhaForm') {
+                    const data = { Name: form.chandhaName.value, Amount: form.chandhaAmount.value, Phone: form.chandhaPhone.value };
+                    await apiRequest('/add/chandha', 'POST', data);
+                } else if (formId === 'sponsorsForm') {
+                    const data = { Name: form.sponsorName.value, Item: form.sponsorItem.value, Amount: form.sponsorAmount.value };
+                    await apiRequest('/add/sponsors', 'POST', data);
+                } else if (formId === 'usageForm') {
+                    const expenseData = { Name: form.expenseName.value, Purpose: form.expensePurpose.value, Amount: form.expenseAmount.value, ImageURL: form.expenseImageUrl.value, Status: form.expenseStatus.value, PayTo: form.expenseStatus.value === 'Unpaid' ? form.expensePayTo.value : '' };
+                    await apiRequest('/add/expenses', 'POST', expenseData);
+                    
+                    const itemData = { ItemName: form.expenseName.value, Price: form.expenseAmount.value, Purpose: form.expensePurpose.value, ImageURL: form.expenseImageUrl.value };
+                    await apiRequest('/add/items', 'POST', itemData);
+                    document.getElementById('payToContainer').classList.add('hidden');
+                }
+                form.reset();
+                fetchAllData(); // Refresh all data
+            } catch (error) {
+                // Error is already logged and alerted by apiRequest
+            }
+        }
+
+        function handleActionClick(e) {
+            const targetButton = e.target.closest('button');
+            if (!targetButton) return;
+            const { action, id, collection } = targetButton.dataset;
+            if (!action || !id || !collection) return;
+
+            if (action === 'delete') {
+                if (confirm('Are you sure you want to delete this record?')) {
+                    apiRequest(`/delete/${collection}/${id}`, 'DELETE').then(fetchAllData);
+                }
+            } else if (action === 'edit') {
+                openEditModal(collection, id);
+            } else if (action === 'markAsPaid') {
+                apiRequest(`/update/expenses/${id}`, 'PUT', { Status: 'Paid', PayTo: '' }).then(fetchAllData);
+            }
+        }
+        
+        async function handleUpdateSubmit(e) {
+            e.preventDefault();
+            const { collectionName, docId } = currentEditInfo;
+            if (!collectionName || !docId) return;
+
+            const formData = new FormData(e.target);
+            const updatedData = {};
+            for (let [key, value] of formData.entries()) {
+                updatedData[key] = value;
+            }
+            
+            await apiRequest(`/update/${collectionName}/${docId}`, 'PUT', updatedData);
+            toggleModal(false);
+            fetchAllData();
+        }
+
+        // --- Modal & Entry Creation ---
+        function openEditModal(collectionName, docId) {
+            const record = allDataCache[collectionName.toLowerCase()].find(item => item.id.toString() === docId.toString());
+            if (!record) { alert('Could not find record to edit.'); return; }
+            
+            currentEditInfo = { collectionName, docId };
+            const fieldsContainer = document.getElementById('editFieldsContainer');
+            fieldsContainer.innerHTML = '';
+            document.getElementById('modalTitle').textContent = `Edit ${collectionName.charAt(0).toUpperCase() + collectionName.slice(1, -1)}`;
+
+            if (collectionName === 'chandha') {
+                fieldsContainer.innerHTML = `<div class="mb-4"><label class="block text-sm font-medium">Name</label><input type="text" name="Name" value="${record.Name}" class="form-input w-full mt-1"></div><div class="mb-4"><label class="block text-sm font-medium">Amount</label><input type="number" name="Amount" value="${record.Amount}" class="form-input w-full mt-1"></div><div class="mb-4"><label class="block text-sm font-medium">Phone</label><input type="tel" name="Phone" value="${record.Phone || ''}" class="form-input w-full mt-1"></div>`;
+            } else if (collectionName === 'sponsors') {
+                 fieldsContainer.innerHTML = `<div class="mb-4"><label class="block text-sm font-medium">Name</label><input type="text" name="Name" value="${record.Name}" class="form-input w-full mt-1"></div><div class="mb-4"><label class="block text-sm font-medium">Item</label><input type="text" name="Item" value="${record.Item}" class="form-input w-full mt-1"></div><div class="mb-4"><label class="block text-sm font-medium">Amount</label><input type="number" name="Amount" value="${record.Amount}" class="form-input w-full mt-1"></div>`;
+            } else if (collectionName === 'expenses') {
+                 fieldsContainer.innerHTML = `<div class="mb-4"><label class="block text-sm font-medium">Name</label><input type="text" name="Name" value="${record.Name}" class="form-input w-full mt-1"></div><div class="mb-4"><label class="block text-sm font-medium">Purpose</label><input type="text" name="Purpose" value="${record.Purpose}" class="form-input w-full mt-1"></div><div class="mb-4"><label class="block text-sm font-medium">Amount</label><input type="number" name="Amount" value="${record.Amount}" class="form-input w-full mt-1"></div>`;
+            } else if (collectionName === 'items') {
+                fieldsContainer.innerHTML = `<div class="mb-4"><label class="block text-sm font-medium">Item Name</label><input type="text" name="ItemName" value="${record.ItemName}" class="form-input w-full mt-1"></div><div class="mb-4"><label class="block text-sm font-medium">Purpose</label><input type="text" name="Purpose" value="${record.Purpose || ''}" class="form-input w-full mt-1"></div><div class="mb-4"><label class="block text-sm font-medium">Price</label><input type="number" name="Price" value="${record.Price}" class="form-input w-full mt-1"></div><div class="mb-4"><label class="block text-sm font-medium">Image URL</label><input type="url" name="ImageURL" value="${record.ImageURL || ''}" class="form-input w-full mt-1"></div>`;
+            }
+            toggleModal(true);
+        }
+
+        function createActionButtons(collection, id) {
+            return `<div class="flex items-center space-x-1 justify-end"><button data-action="edit" data-collection="${collection}" data-id="${id}" class="text-indigo-500 p-2 rounded-full hover:bg-indigo-100" title="Edit record"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.5L14.732 3.732z"/></svg></button><button data-action="delete" data-collection="${collection}" data-id="${id}" class="text-red-500 p-2 rounded-full hover:bg-red-100" title="Delete record"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg></button></div>`;
+        }
+        
+        function createExpenseListEntry(data) {
+            const div = document.createElement('div');
+            div.className = 'list-entry p-3 rounded-md border border-gray-200';
+            const statusBadge = data.Status === 'Paid' ? `<span class="text-xs font-medium mr-2 px-2.5 py-0.5 rounded bg-green-100 text-green-800">Paid</span>` : `<span class="text-xs font-medium mr-2 px-2.5 py-0.5 rounded bg-red-100 text-red-800">Unpaid</span>`;
+            const payToInfo = data.Status === 'Unpaid' ? `<p class="text-sm text-red-600">Pay to: ${data.PayTo}</p>` : '';
+            div.innerHTML = `<div class="flex justify-between items-start"><div><p class="text-gray-800"><strong>${data.Name}</strong> (${data.Purpose}) - ₹${parseFloat(data.Amount).toFixed(2)}</p><p class="text-xs text-gray-500 mt-1">${new Date(data.Datetime).toLocaleString()}</p>${payToInfo}</div><div class="flex-shrink-0">${statusBadge}</div></div><div class="flex justify-end items-center mt-2">${data.Status === 'Unpaid' ? `<button data-action="markAsPaid" data-collection="expenses" data-id="${data.id}" class="text-sm text-white bg-green-500 hover:bg-green-600 px-3 py-1 rounded-md mr-2">Mark as Paid</button>` : ''}${createActionButtons('expenses', data.id)}</div>`;
+            return div;
+        }
+
+        function createChandhaListEntry(data) {
+            const div = document.createElement('div');
+            div.className = 'list-entry p-3 rounded-md border border-gray-200 flex justify-between items-center';
+            const message = encodeURIComponent(`Thank you, ${data.Name}, for your generous donation of ₹${parseFloat(data.Amount).toFixed(2)}.`);
+            const whatsappUrl = `https://wa.me/${data.Phone}?text=${message}`;
+            const phoneInfo = data.Phone ? `Phone: ${data.Phone} | ` : '';
+            div.innerHTML = `<div><p class="text-gray-800"><strong>${data.Name}</strong> - ₹${parseFloat(data.Amount).toFixed(2)}</p><p class="text-xs text-gray-500 mt-1">${phoneInfo}${new Date(data.Datetime).toLocaleString()}</p></div><div class="flex items-center space-x-2">${data.Phone ? `<a href="${whatsappUrl}" target="_blank" class="text-green-500 p-2 rounded-full hover:bg-green-100" title="Send WhatsApp"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/></svg></a>` : ''}${createActionButtons('chandha', data.id)}</div>`;
+            return div;
+        }
+
+        function createSponsorListEntry(data) {
+            const div = document.createElement('div');
+            div.className = 'list-entry p-3 rounded-md border border-gray-200 flex justify-between items-center';
+            div.innerHTML = `<div><p class="text-gray-800"><strong>${data.Name}</strong> (${data.Item}) - ₹${parseFloat(data.Amount).toFixed(2)}</p><p class="text-xs text-gray-500 mt-1">${new Date(data.Datetime).toLocaleString()}</p></div>${createActionButtons('sponsors', data.id)}`;
+            return div;
+        }
+
+        function createItemTableRow(data) {
+            const tr = document.createElement('tr');
+            tr.className = 'border-b border-gray-200';
+            const imageUrl = data.ImageURL || 'https://placehold.co/60x40/f0f4f8/9ca3af?text=No+Image';
+            tr.innerHTML = `<td class="p-3"><img src="${imageUrl}" class="h-10 w-16 object-cover rounded-md" onerror="this.onerror=null;this.src='https://placehold.co/60x40/f0f4f8/9ca3af?text=No+Image';"></td><td class="p-3">${data.ItemName}</td><td class="p-3">${data.Purpose}</td><td class="p-3">₹${parseFloat(data.Price).toFixed(2)}</td><td class="p-3">${new Date(data.Datetime).toLocaleDateString()}</td><td class="p-3 text-right">${createActionButtons('items', data.id)}</td>`;
+            return tr;
+        }
+        
+        function toggleModal(show) {
+            document.getElementById('editModal').classList.toggle('active', show);
+            if (!show) currentEditInfo = {};
+        }
+
+        // --- Initial Load & UI Setup ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabs = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    document.getElementById(tab.dataset.tab).classList.add('active');
+                });
+            });
+            document.querySelector('.tab-button[data-tab="home"]').classList.add('active');
+            document.getElementById('home').classList.add('active');
+
+            document.getElementById('chandhaForm').addEventListener('submit', handleFormSubmit);
+            document.getElementById('sponsorsForm').addEventListener('submit', handleFormSubmit);
+            document.getElementById('usageForm').addEventListener('submit', handleFormSubmit);
+            
+            document.getElementById('expenseStatus').addEventListener('change', (e) => {
+                const payToContainer = document.getElementById('payToContainer');
+                const payToInput = document.getElementById('expensePayTo');
+                if (e.target.value === 'Unpaid') {
+                    payToContainer.classList.remove('hidden');
+                    payToInput.required = true;
+                } else {
+                    payToContainer.classList.add('hidden');
+                    payToInput.required = false;
+                }
+            });
+
+            document.getElementById('main-content').addEventListener('click', handleActionClick);
+            document.getElementById('cancelEdit').addEventListener('click', () => toggleModal(false));
+            document.getElementById('editForm').addEventListener('submit', handleUpdateSubmit);
+            
+            fetchAllData();
+        });
+    </script>
+</body>
+</html>
