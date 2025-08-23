@@ -71,7 +71,6 @@
         </nav>
 
         <main id="main-content">
-            <!-- Home Tab -->
             <div id="home" class="tab-content active">
                 <div class="bg-white p-8 rounded-xl shadow-lg text-center card">
                     <h2 class="text-2xl font-semibold text-gray-500 mb-2">Available Balance</h2>
@@ -86,21 +85,16 @@
                 </div>
             </div>
             
-            <!-- Chandha Tab -->
             <div id="chandha" class="tab-content"><div class="grid grid-cols-1 md:grid-cols-2 gap-8"><div class="bg-white p-6 rounded-xl shadow-lg card"><h2 class="text-2xl font-bold mb-6">Record Donation (Chandha)</h2><form id="chandhaForm"><div class="mb-4"><label for="chandhaName" class="block text-sm font-medium text-gray-700">Donor's Name</label><input type="text" id="chandhaName" required class="form-input mt-1 block w-full" placeholder="e.g., Ramesh Kumar"></div><div class="mb-4"><label for="chandhaAmount" class="block text-sm font-medium text-gray-700">Amount</label><input type="number" id="chandhaAmount" step="0.01" required class="form-input mt-1 block w-full" placeholder="e.g., 501"></div><div class="mb-4"><label for="chandhaPhone" class="block text-sm font-medium text-gray-700">Phone Number (Optional)</label><input type="tel" id="chandhaPhone" placeholder="e.g., 9876543210" class="form-input mt-1 block w-full"></div><button type="submit" class="w-full btn text-white py-3 px-4 rounded-md font-semibold from-purple-500 to-purple-600">Record Donation</button></form></div><div class="bg-white p-6 rounded-xl shadow-lg card"><h2 class="text-2xl font-bold mb-6">Donation History</h2><div id="chandhaList" data-collection="chandha" class="space-y-2 max-h-96 overflow-y-auto"><div class="loader"></div></div></div></div></div>
 
-            <!-- Sponsors Tab -->
             <div id="sponsors" class="tab-content"><div class="grid grid-cols-1 md:grid-cols-2 gap-8"><div class="bg-white p-6 rounded-xl shadow-lg card"><h2 class="text-2xl font-bold mb-6">Add Sponsor</h2><form id="sponsorsForm"><div class="mb-4"><label for="sponsorName" class="block text-sm font-medium text-gray-700">Sponsor's Name</label><input type="text" id="sponsorName" required class="form-input mt-1 block w-full" placeholder="e.g., ABC Textiles"></div><div class="mb-4"><label for="sponsorItem" class="block text-sm font-medium text-gray-700">Item Sponsored</label><input type="text" id="sponsorItem" required class="form-input mt-1 block w-full" placeholder="e.g., Flowers & Decoration"></div><div class="mb-4"><label for="sponsorAmount" class="block text-sm font-medium text-gray-700">Amount</label><input type="number" id="sponsorAmount" step="0.01" required class="form-input mt-1 block w-full" placeholder="e.g., 5001"></div><button type="submit" class="w-full btn text-white py-3 px-4 rounded-md font-semibold from-green-500 to-green-600">Add Sponsor</button></form></div><div class="bg-white p-6 rounded-xl shadow-lg card"><h2 class="text-2xl font-bold mb-6">Sponsor History</h2><div id="sponsorList" data-collection="sponsors" class="space-y-2 max-h-96 overflow-y-auto"><div class="loader"></div></div></div></div></div>
 
-            <!-- Money Usage Tab -->
             <div id="usage" class="tab-content"><div class="bg-white p-6 rounded-xl shadow-lg card"><h2 class="text-2xl font-bold mb-6">Log Expense</h2><form id="usageForm"><div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4"><div class="mb-4 md:mb-0"><label for="expenseName" class="block text-sm font-medium text-gray-700">Name/Item (Samanu)</label><input type="text" id="expenseName" required class="form-input mt-1 block w-full" placeholder="e.g., Pooja Samagri"></div><div><label for="expensePurpose" class="block text-sm font-medium text-gray-700">Purpose</label><input type="text" id="expensePurpose" required class="form-input mt-1 block w-full" placeholder="e.g., Daily Aarti"></div></div><div class="mb-4"><label for="expenseImageUrl" class="block text-sm font-medium text-gray-700">Image URL (Optional)</label><input type="url" id="expenseImageUrl" placeholder="https://example.com/image.png" class="form-input mt-1 block w-full"></div><div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4"><div><label for="expenseAmount" class="block text-sm font-medium text-gray-700">Amount</label><input type="number" id="expenseAmount" step="0.01" required class="form-input mt-1 block w-full" placeholder="e.g., 1101"></div><div><label for="expenseStatus" class="block text-sm font-medium text-gray-700">Status</label><select id="expenseStatus" class="form-input mt-1 block w-full"><option value="Paid">Paid</option><option value="Unpaid">Unpaid</option></select></div></div><div id="payToContainer" class="mb-4 hidden"><label for="expensePayTo" class="block text-sm font-medium text-gray-700">Pay To (Name)</label><input type="text" id="expensePayTo" class="form-input mt-1 block w-full" placeholder="e.g., Flower Shop"></div><button type="submit" class="w-full btn text-white py-3 px-4 rounded-md font-semibold from-red-500 to-red-600">Log Expense</button></form></div><div class="bg-white p-6 rounded-xl shadow-lg card"><h2 class="text-2xl font-bold mb-6">Expense History</h2><div id="expenseList" data-collection="expenses" class="space-y-2 max-h-96 overflow-y-auto"><div class="loader"></div></div></div></div>
 
-            <!-- Items Purchased Tab -->
             <div id="items" class="tab-content"><div class="bg-white p-6 rounded-xl shadow-lg card"><h2 class="text-2xl font-bold mb-4">Item Purchase History</h2><p class="text-sm text-gray-600 mb-6">This list is automatically updated from 'Money Usage'.</p><div class="overflow-x-auto"><table class="w-full text-left"><thead class="bg-gray-100"><tr><th class="p-3">Image</th><th class="p-3">Item Name (Samanu)</th><th class="p-3">Purpose</th><th class="p-3">Price</th><th class="p-3">Date</th><th class="p-3 text-right">Actions</th></tr></thead><tbody id="itemList" data-collection="items"><tr id="itemsLoader"><td colspan="6"><div class="loader"></div></td></tr></tbody></table></div></div></div>
         </main>
     </div>
 
-    <!-- Edit Modal -->
     <div id="editModal" class="modal-overlay">
         <div class="modal-content">
             <h2 id="modalTitle" class="text-2xl font-bold mb-6">Edit Record</h2>
@@ -126,7 +120,9 @@
             const totalExpenses = data.expenses.reduce((sum, item) => sum + parseFloat(item.Amount || 0), 0);
             const totalToPay = data.expenses.filter(item => item.Status === 'Unpaid').reduce((sum, item) => sum + parseFloat(item.Amount || 0), 0);
             const totalAmountGot = totalDonations + totalSponsors;
-            const balance = totalDonations - totalExpenses;
+            
+            // UPDATED BALANCE CALCULATION
+            const balance = totalAmountGot - totalExpenses;
             
             document.getElementById('balance').textContent = `₹${balance.toFixed(2)}`;
             document.getElementById('balance').classList.toggle('text-red-600', balance < 0);
@@ -291,7 +287,10 @@
         function createChandhaListEntry(data) {
             const div = document.createElement('div');
             div.className = 'list-entry p-3 rounded-md border border-gray-200 flex justify-between items-center';
-            const message = encodeURIComponent(`Thank you, ${data.Name}, for your generous donation of ₹${parseFloat(data.Amount).toFixed(2)}.`);
+            
+            // UPDATED WHATSAPP MESSAGE
+            const message = encodeURIComponent(`🙏 గణపతి బప్ప మోర్యా 🙏\n\nశ్రీ గణపతి బప్ప ఆశీస్సులతో, మనము మరోసారి వినాయక చవితి ఉత్సవాలను భక్తి, ఆనందాలతో జరుపుకుంటున్నాము. 🌺✨\n\nవినాయక చవితి చందాను ఇచ్చినందుడుకుగాను మా కొత్తూరు యూత్ తరుపున మీకు ధన్యవాదాలు\n\nగణపతి బప్ప మోర్యా! మంగళ మూర్తి మోర్యా!`);
+            
             const whatsappUrl = `https://wa.me/${data.Phone}?text=${message}`;
             const phoneInfo = data.Phone ? `Phone: ${data.Phone} | ` : '';
             div.innerHTML = `<div><p class="text-gray-800"><strong>${data.Name}</strong> - ₹${parseFloat(data.Amount).toFixed(2)}</p><p class="text-xs text-gray-500 mt-1">${phoneInfo}${new Date(data.Datetime).toLocaleString()}</p></div><div class="flex items-center space-x-2">${data.Phone ? `<a href="${whatsappUrl}" target="_blank" class="text-green-500 p-2 rounded-full hover:bg-green-100" title="Send WhatsApp"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/></svg></a>` : ''}${createActionButtons('chandha', data.id)}</div>`;
@@ -358,4 +357,3 @@
     </script>
 </body>
 </html>
-
